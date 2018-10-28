@@ -1,5 +1,38 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1.display-4.m-b-2 #{title} - Know Your Content
+    h2 Images
+    label Number of Pictures: 0
+    h2 Music
+    label Number of Songs:
+    p
+    label Number of Albums: 0
+    p
+    label Number of Albums with less than 5 songs:
+    p
+    label Number of Artists:
+
+    h2 Video
+    label Number of Movies: 0
+    h2 Work
+    label Number of Text Files: 0
+    p
+    label Number of Spreadsheets: 0
+    p
+    label Number of Presentations: 0
+    p
+    label(for='folderPath') Number of files:
+    p
+    p
+    p
+
+    h2 Analyze
+    form(method='POST' action='/ingest')
+      div.form-group
+        label(for='folderPath') Folder path:
+        input#folderPath.form-control(type='text', placeholder='C:/media' name='folderPath')
+      button.btn.btn-primary(type='submit') Analyze
+      form(method='GET' action='/album')
+          div.form-group
+          button.btn.btn-primary(type='submit') Album

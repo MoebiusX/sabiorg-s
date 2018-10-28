@@ -1,0 +1,9 @@
+div
+    table
+        thead
+            tr: th Albums
+        tbody
+            each album, i in myAlbum
+                tr(class=(i % 2 == 0) ? 'odd' : 'even')
+                    td
+                        a(href='/album/' + i) #{album}
