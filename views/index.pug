@@ -5,34 +5,33 @@ block content
     h2 Images
     label Number of Pictures: 0
     h2 Music
-    label Number of Songs:
-    p
-    label Number of Albums: 0
-    p
-    label Number of Albums with less than 5 songs:
-    p
-    label Number of Artists:
+    table
+        thead
+            tr: th Number of Songs: #{mediaCount}
+                th Number of Albums: #{nAlbums}
+                th Number of Albums with less than 5 songs:
+                th Number of Artists:
 
+        table
+            thead
+                td: form(method='GET' action='/album')
+                    button.btn.btn-primary(type='submit') Organize Albums
+                    button.btn.btn-primary(type='submit') Create Playlist
+    p Toggle by decade, genre, mood
     h2 Video
     label Number of Movies: 0
-    h2 Work
-    label Number of Text Files: 0
-    p
-    label Number of Spreadsheets: 0
-    p
-    label Number of Presentations: 0
-    p
-    label(for='folderPath') Number of files:
-    p
-    p
-    p
 
+    h2 Work
+    table
+        thead
+            tr: th Number of Text Files: 0
+                th Number of Spreadsheets: 0
+                th NNumber of Presentations: 0
+                th Number of files:
+    p
     h2 Analyze
     form(method='POST' action='/ingest')
       div.form-group
         label(for='folderPath') Folder path:
         input#folderPath.form-control(type='text', placeholder='C:/media' name='folderPath')
       button.btn.btn-primary(type='submit') Analyze
-      form(method='GET' action='/album')
-          div.form-group
-          button.btn.btn-primary(type='submit') Album
