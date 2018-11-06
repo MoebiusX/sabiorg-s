@@ -1,9 +1,39 @@
-div
-    table
-        thead
-            tr: th Albums
-        tbody
-            each album, i in myAlbum
-                tr(class=(i % 2 == 0) ? 'odd' : 'even')
-                    td
-                        a(href='/album/' + i) #{album}
+extends layout
+
+block content
+    .container-fluid
+        .row
+            .container
+                .jumbotron
+                    h2 #{title} - Know Your Music
+    .container-fluid
+        ul.breadcrumb
+            li.breadcrumb-item
+                a(href='/') Home
+            li.breadcrumb-item
+                a(href='#') Music
+            li.breadcrumb-item
+                a(href='#') Albums
+        .container-fluid
+            div
+                table
+                    //thead
+                    //    tr: th Albums
+                    tbody
+                        each album, i in myAlbum
+                            tr(class=(i % 2 == 0) ? 'odd' : 'even')
+                                td
+                                    a(href='/album/' + i) #{album}
+        .container
+            ul#myDiv.pagination.justify-content-center(style='margin:20px 0')
+                li.page-item
+                     a.page-link(href='/album?p='+(kp-1)) Previous
+                each page, j in pages
+                    if (j == kp)
+                        li.page-item.active
+                            a.page-link(href='/album?p=' + pages[j]) #{(pages[j] + 1)}
+                    else
+                        li.page-item
+                            a.page-link(href='/album?p='+ pages[j]) #{(pages[j] + 1)}
+                li.page-item
+                    a.page-link(href='/album?p='+(kp*1+1)) Next
