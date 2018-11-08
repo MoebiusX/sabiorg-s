@@ -25,7 +25,22 @@ router.get('/', function(req, res, next) {
         }
         // res.send("Analyzing files under "+fpath+" "+body);
         myBody = JSON.parse(body);
-        myAlbum=myBody.album;
+        myAlbum = myBody.album;
+
+        for (var i=0; i<myAlbum.length; i++){
+            if (myAlbum[i].pic) {
+                let buff = new Buffer(myAlbum[i].pic.imageBuffer.data);
+                let base64data = buff.toString('base64');
+                myAlbum[i].pic = "data:image/jpeg;base64," + base64data;
+            }
+
+        }
+
+
+        // var tmpAlbum=myBody.album;
+        // myAlbum = tmpAlbum.map(function(tmpAlbum) {
+        //     return tmpAlbum['title'];
+        // });
 
         var pageCount = Math.ceil(myAlbum.length / recordsPerPage);
 
@@ -36,19 +51,19 @@ router.get('/', function(req, res, next) {
         var totalPage = 10;
         var maxPage = totalPage;
         var minPage = 0;
-        // if ((p-(totalPage/2)) > 0)
-        //     minPage = p-(totalPage/2);
-        // else
-        //     minPage = 0;
-        //
-        // if ((p+(totalPage)) < pageCount)
-        //     maxPage = p+(totalPage);
-        // else
-        //     maxPage = pageCount;
-        //
-        // for (var j=minPage;  (j<maxPage); j++) {
-        //     pages.push(j);
-        // }
+        if ((p-(totalPage)) > 0)
+            minPage = p-(totalPage);
+        else
+            minPage = 0;
+
+        if ((p+(totalPage)) < pageCount)
+            maxPage = p+(totalPage);
+        else
+            maxPage = pageCount;
+
+        for (var j=minPage;  (j<maxPage); j++) {
+            pages.push(j);
+        }
 
         for (var j=0;  (j<pageCount && j<maxPage); j++) {
             pages[j]=j;
@@ -66,8 +81,25 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
+    Request.get("http://localhost:3000/api/v1/images", (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+        // res.send("Analyzing files under "+fpath+" "+body);
+        myBody = JSON.parse(body);
+        var pic = myBody.image[0];
+            var base64String = "";
+            for (var i = 0; i < pic.imageBuffer.data.length; i++) {
+                base64String += String.fromCharCode(pic.imageBuffer.data[i]);
+            }
+            let buff = new Buffer(pic.imageBuffer.data);
+            let base64data = buff.toString('base64');
+            var myPic = "data:image/jpeg;base64," + base64data;
+        res.render('albumItem',  { title: "My Album", myPic: myPic});
 
-        res.render('albumItem',  { album:"My Album"});
+    });
+
+
 });
 
 

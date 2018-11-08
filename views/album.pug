@@ -23,7 +23,8 @@ block content
                         each album, i in myAlbum
                             tr(class=(i % 2 == 0) ? 'odd' : 'even')
                                 td
-                                    a(href='/album/' + i) #{album}
+                                    a(href='/album/' + i) #{album.title}
+                                    img(src=album.pic, alt='.', height='100', width='100')
         .container
             ul#myDiv.pagination.justify-content-center(style='margin:20px 0')
                 li.page-item
