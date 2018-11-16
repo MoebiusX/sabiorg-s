@@ -9,6 +9,11 @@ var usersRouter = require('./routes/users');
 //var mp3Router = require('./routes/mp3Item');
 var albumRouter = require('./routes/album');
 
+var musicRouter = require('./routes/music');
+var photosRouter = require('./routes/photos');
+var videosRouter = require('./routes/videos');
+var workRouter = require('./routes/work');
+
 var app = express();
 
 // view engine setup
@@ -27,6 +32,10 @@ app.use('/users', usersRouter);
 app.use('/album', albumRouter);
 app.use('/album/:id', albumRouter);
 
+app.use('/music', musicRouter);
+app.use('/photos', photosRouter);
+app.use('/videos', videosRouter);
+app.use('/work', workRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

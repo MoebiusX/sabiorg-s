@@ -9,8 +9,8 @@ block content
         .row
             .col
                 .container-fluid
-                    h4 Home
-                    ul.nav.flex-column
+                    //h4 Home
+                    //ul.nav.flex-column
                         li.nav-item
                             a.nav-link(href='#') Images
                         li.nav-item
@@ -23,7 +23,7 @@ block content
                 .container-fluid
                     //-.jumbotron
                         h1 #{title} - Know Your Content
-                    nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+                    //nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
                         form.form-inline(action='/analyze')
                             input.form-control.mr-sm-4(type='text', placeholder='C:/media')
                             button.btn.btn-success(type='submit') Analyze
@@ -32,7 +32,8 @@ block content
                         .card.bg-primary
                             .card-body.text-center
                                 //h2.card-text Images
-                                img(src='/images/photo.png', alt='Music', width='80', height='80')
+                                a.nav-link(href='/photos')
+                                    img(src='/images/photo.png', alt='Music', width='70', height='70')
                                 p
                                 p.card-text Number of Pictures: 0
                                 p.card-text Number of Pictures: 0
@@ -41,7 +42,8 @@ block content
                         .card.bg-warning
                             .card-body.text-center
                                 //h2.card-text Music
-                                img(src='/images/music.png', alt='Music', width='80', height='80')
+                                a.nav-link(href='/music')
+                                    img(src='/images/music.png', alt='Music', width='70', height='70')
                                 p
                                 p.card-text Number of Songs: #{mediaCount}
                                 p.card-text
@@ -51,7 +53,8 @@ block content
                         .card.bg-success
                             .card-body.text-center
                                 //h2.card-text Videos
-                                img(src='/images/video.png', alt='Music', width='80', height='80')
+                                a.nav-link(href='/videos')
+                                    img(src='/images/video.png', alt='Music', width='70', height='70')
                                 p
                                 p.card-text Number of Movies: 0
                                 p.card-text Number of Movies: 0
@@ -60,7 +63,8 @@ block content
                         .card.bg-danger
                             .card-body.text-center
                                 //h2.card-text Work
-                                img(src='/images/work.png', alt='Music', width='80', height='80')
+                                a.nav-link(href='/work')
+                                    img(src='/images/work.png', alt='Music', width='70', height='70')
                                 p
                                 p.card-text Number of Text Files: 0
                                 p.card-text Number of Spreadsheets: 0

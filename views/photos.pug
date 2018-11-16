@@ -1,0 +1,60 @@
+extends layout
+
+block content
+    .container-fluid
+        .row
+            .container
+                .jumbotron
+                    h1 #{title} - Know Your Photos
+            .container
+                ul.breadcrumb
+                    li.breadcrumb-item
+                        a(href='/') Home
+                    li.breadcrumb-item
+                        a(href='#') Photos
+        .row
+            .col
+                .container-fluid
+                    //h4 Home
+                    //ul.nav.flex-column
+                        li.nav-item
+                            a.nav-link(href='#') Images
+                        li.nav-item
+                            a.nav-link(href='/album') Music
+                        li.nav-item
+                            a.nav-link(href='#') Videos
+                        li.nav-item
+                            a.nav-link(href='#') Work
+            .col-sm-9
+                .container-fluid
+                    //-.jumbotron
+                        h1 #{title} - Know Your Content
+                    nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+                        form.form-inline(action='/analyze')
+                            input.form-control.mr-sm-4(type='text', placeholder='C:/media')
+                            button.btn.btn-success(type='submit') Analyze
+                    p
+                    .card-deck
+                        .card.bg-primary
+                            .card-body.text-center
+                                //h2.card-text Images
+                                img(src='/images/photo.png', alt='Music', width='70', height='70')
+                                p
+                                p.card-text Number of Pictures: 0
+                                p.card-text Number of Pictures: 0
+                                p.card-text Number of Pictures: 0
+                                p.card-text Number of Pictures: 0
+
+
+                    //- button.btn.btn-primary(type='submit') Organize Albums
+                      button.btn.btn-primary(type='submit') Create Playlist
+                    //- p.bg-danger.text-white TODO Toggle by decade, genre, mood
+
+
+                    //-h2 Analyze
+                    //-form(method='POST' action='/ingest')
+                      div.form-group
+                        label(for='folderPath') Folder path:
+                        input#folderPath.form-control(type='text', placeholder='C:/media' name='folderPath')
+                      button.btn.btn-primary(type='submit') Analyze
+            .col
