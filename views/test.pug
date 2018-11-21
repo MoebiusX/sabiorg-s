@@ -1,0 +1,42 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(http-equiv='X-UA-Compatible', content='ie=edge')
+        title EXIF example with inline EXIF info
+    body
+        img#img1(src='/images/image1.jpg')
+        pre#n#makeAndModel
+        img#img2(src='/images/image2.jpg')
+        pre#allMetaDataSpan
+        img#img3(src='/images/image2.jpg')
+        pre#img3WithXmpMetaData
+        script(type='text/javascript', src='/exif.js')
+        script.
+            "use strict";
+            window.onload=getExif;
+            function getExif() {
+                var theimg = document.getElementById("img1");
+                alert("Image Make: " + EXIF.getTag(theimg, "Make") + "Image Model: " + EXIF.getTag(theimg, "Model"));
+                var img1 = document.getElementById("img1");
+                EXIF.getData(img1, function() {
+                    var make = EXIF.getTag(img1, "Make");
+                    var model = EXIF.getTag(this, "Model");
+                    var makeAndModel = document.getElementById("makeAndModel");
+                    makeAndModel.innerHTML = `${make} ${model}`;
+                });
+                var img2 = document.getElementById("img2");
+                EXIF.getData(img2, function() {
+                    var allMetaData = EXIF.getAllTags(this);
+                    var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+                    allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\\t");
+                });
+                var img3 = document.getElementById("img3");
+                // EXIF.enableXmp();
+                EXIF.getData(img3, function() {
+                    var allMetaData = EXIF.getAllTags(this);
+                    var img3WithXmpMetaData = document.getElementById("img3WithXmpMetaData");
+                    img3WithXmpMetaData.innerHTML = JSON.stringify(allMetaData, null, "\\t");
+                });
+            }
